@@ -11,7 +11,7 @@
     <groupId>br.com</groupId>
     <artifactId>sgv</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sgi</name>
+    <name>sgv</name>
     <description>Sistema Gerenciador de Vendas</description>
     <properties>
         <java.version>20</java.version>

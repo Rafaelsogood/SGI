@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
     <head> 
         <meta charset="utf-8"/>
-        <title>Sistema Gerenciador de Imóveis - Imobiliária Jorge Almir</title>
+        <title>Sistema Gerenciador de Imóveis (SGI)- Imobiliária Jorge Almir</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -16,30 +16,34 @@
     <body>
         <div th:replace="header :: header">...</div>
         <div class="container" style="margin-top: 50px; margin-bottom: 20px">
-            <h2 class="alert alert-dark">Gerenciar Usuarios</h2> 
-            <p class="text-right"><a href="/usuarios/novo" class="btn btn-primary"> Novo Usuario </a></p>
+            <h2 class="alert alert-dark">Gerenciar Imóveis</h2> 
+            <p class="text-right"><a href="/imoveis/novo" class="btn btn-primary"> Novo Imóvel </a></p>
         </div> 
         <div class="container">
-            <table id="TabelaUsuarios" class="table table-striped">
+            <table id="Tabelaimoveis" class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Login</th>
-                        <th>Senha</th>
-                        <th>Papel</th>
+                        <th>Endereço</th>
+                        <th>Proprietário</th>
+                        <th>IPTU</th>
+                        <th>Inquilino</th>
+                        <th>Valor do Aluguel</th>
                         <th>Alterar</th>
                         <th>Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="u : ${listaUsuarios}">
-                        <td th:text="${u.id}"></td>
-                        <td th:text="${u.login}"></td>
-                        <td th:text="${u.senha}"></td>
-                        <td th:text="${u.papel}"></td>
-                        <td><a th:href="@{/usuarios/{id}(id=${u.id})}" class="btn btn-warning"><i class="bi bi-pencil"></i></a></td>
+                    <tr th:each="p : ${listaImoveis}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.endereco}"></td>
+                        <td th:text="${p.proprietarioDaCasa}"></td>
+                        <td th:text="${p.iptu}"></td>
+                        <td th:text="${p.inquilino}"></td>
+                        <td th:text="${p.valorDoAluguel}"></td>
+                        <td><a th:href="@{/imoveis/{id}(id=${p.id})}" class="btn btn-warning"><i class="bi bi-pencil"></i></a></td>
                         <td>
-                            <form action="#" th:action="@{/usuarios/{id}(id=${u.id})}" th:method="delete">
+                            <form action="#" th:action="@{/imoveis/{id}(id=${p.id})}" th:method="delete">
                                 <button type="submit" id="deleteButton" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                             </form>
                         </td>
@@ -49,9 +53,9 @@
         </div>
         <script>
             $(document).ready( function () {
-                $('#TabelaUsuarios').DataTable({
+                $('#imoveis').DataTable({
                     "language": {
-                        "sProcessing":    "Procesando...",
+                        "sProcessing":    "Processando...",
                         "sLengthMenu":    "Exibir _MENU_ registros por página",
                         "sZeroRecords":   "Nenhum resultado encontrado",
                         "sEmptyTable":    "Nenhum resultado encontrado",
